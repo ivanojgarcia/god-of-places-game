@@ -226,7 +226,7 @@ class _QRCodeProfileDetailWidgetState extends State<QRCodeProfileDetailWidget>
                             queryBuilder: (userScoreRecord) =>
                                 userScoreRecord.where(
                               'user',
-                              isEqualTo: currentUserReference,
+                              isEqualTo: widget.userCardsDocument?.user,
                             ),
                             singleRecord: true,
                           ),
