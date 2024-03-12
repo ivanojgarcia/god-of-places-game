@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "987165186169",
+    "project_id": "god-of-places-game-ddglln",
+    "storage_bucket": "god-of-places-game-ddglln.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:987165186169:android:b7b399c5b548366c5a9ca8",
+        "android_client_info": {
+          "package_name": "com.mycompany.godofplacesgame"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdK8-jUGY3hF269qJz57gLvMFO-seYmW0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
