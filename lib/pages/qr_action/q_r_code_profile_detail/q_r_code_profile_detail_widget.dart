@@ -1,4 +1,3 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -274,97 +273,115 @@ class _QRCodeProfileDetailWidgetState extends State<QRCodeProfileDetailWidget>
                                 ),
                                 child: Padding(
                                   padding: const EdgeInsets.all(12.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Container(
-                                        width: 44.0,
-                                        height: 44.0,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          shape: BoxShape.circle,
-                                        ),
-                                        child: Builder(
-                                          builder: (context) {
-                                            if (valueOrDefault(
-                                                    currentUserDocument?.avatar,
-                                                    '') ==
-                                                'cat') {
-                                              return ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
-                                                child: Image.asset(
-                                                  'assets/images/kitty-hero.png',
-                                                  width: 200.0,
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              );
-                                            } else if (valueOrDefault(
-                                                    currentUserDocument?.avatar,
-                                                    '') ==
-                                                'tigger') {
-                                              return ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
-                                                child: Image.asset(
-                                                  'assets/images/tigger-hero.png',
-                                                  width: 200.0,
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              );
-                                            } else {
-                                              return ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
-                                                child: Image.asset(
-                                                  'assets/images/bird-hero.png',
-                                                  width: 200.0,
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              );
-                                            }
-                                          },
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  8.0, 0.0, 0.0, 0.0),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              AuthUserStreamWidget(
-                                                builder: (context) => Text(
-                                                  currentUserDisplayName,
-                                                  textAlign: TextAlign.start,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyLarge,
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 4.0, 0.0, 0.0),
-                                                child: RichText(
-                                                  textScaler:
-                                                      MediaQuery.of(context)
-                                                          .textScaler,
-                                                  text: TextSpan(
-                                                    children: [
-                                                      TextSpan(
-                                                        text: 'Level: ',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
+                                  child: StreamBuilder<UsersRecord>(
+                                    stream: UsersRecord.getDocument(
+                                        widget.userCardsDocument!.user!),
+                                    builder: (context, snapshot) {
+                                      // Customize what your widget looks like when it's loading.
+                                      if (!snapshot.hasData) {
+                                        return Center(
+                                          child: SizedBox(
+                                            width: 50.0,
+                                            height: 50.0,
+                                            child: SpinKitRipple(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondary,
+                                              size: 50.0,
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                      final rowUsersRecord = snapshot.data!;
+                                      return Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Container(
+                                            width: 44.0,
+                                            height: 44.0,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              shape: BoxShape.circle,
+                                            ),
+                                            child: Builder(
+                                              builder: (context) {
+                                                if (rowUsersRecord.avatar ==
+                                                    'cat') {
+                                                  return ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                    child: Image.asset(
+                                                      'assets/images/kitty-hero.png',
+                                                      width: 200.0,
+                                                      fit: BoxFit.cover,
+                                                    ),
+                                                  );
+                                                } else if (rowUsersRecord
+                                                        .avatar ==
+                                                    'tigger') {
+                                                  return ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                    child: Image.asset(
+                                                      'assets/images/tigger-hero.png',
+                                                      width: 200.0,
+                                                      fit: BoxFit.cover,
+                                                    ),
+                                                  );
+                                                } else {
+                                                  return ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                    child: Image.asset(
+                                                      'assets/images/bird-hero.png',
+                                                      width: 200.0,
+                                                      fit: BoxFit.cover,
+                                                    ),
+                                                  );
+                                                }
+                                              },
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(8.0, 0.0, 0.0, 0.0),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    rowUsersRecord.displayName,
+                                                    textAlign: TextAlign.start,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyLarge,
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 4.0,
+                                                                0.0, 0.0),
+                                                    child: RichText(
+                                                      textScaler:
+                                                          MediaQuery.of(context)
+                                                              .textScaler,
+                                                      text: TextSpan(
+                                                        children: [
+                                                          TextSpan(
+                                                            text: 'Level: ',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
                                                                 .labelMedium
                                                                 .override(
                                                                   fontFamily:
@@ -376,30 +393,35 @@ class _QRCodeProfileDetailWidgetState extends State<QRCodeProfileDetailWidget>
                                                                       FontWeight
                                                                           .w600,
                                                                 ),
+                                                          ),
+                                                          TextSpan(
+                                                            text:
+                                                                valueOrDefault<
+                                                                    String>(
+                                                              containerUserScoreRecord
+                                                                  ?.level
+                                                                  .toString(),
+                                                              '1',
+                                                            ),
+                                                            style: const TextStyle(),
+                                                          )
+                                                        ],
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelMedium,
                                                       ),
-                                                      TextSpan(
-                                                        text: valueOrDefault<
-                                                            String>(
-                                                          containerUserScoreRecord
-                                                              ?.level
-                                                              .toString(),
-                                                          '1',
-                                                        ),
-                                                        style: const TextStyle(),
-                                                      )
-                                                    ],
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .labelMedium,
+                                                      textAlign:
+                                                          TextAlign.start,
+                                                    ),
                                                   ),
-                                                  textAlign: TextAlign.start,
-                                                ),
+                                                ],
                                               ),
-                                            ],
+                                            ),
                                           ),
-                                        ),
-                                      ),
-                                    ],
+                                        ],
+                                      );
+                                    },
                                   ),
                                 ),
                               ),
